@@ -9,9 +9,10 @@ def vyber_vlajky_k_vykresleni(list_s_vlajkami, nazev_slovniku_s_vlajkami):
             list_s_vlajkami.append(nah_vyber)
         elif pocet_zbyvajicich_vlajek < 3:
             print("Konec hry. Nezbylo dost vlajek.")
-            break
+            return False
         else:
             continue
+    return True
 
 def odstran_pouzitou_vlajku(slovnik_s_vlajkami, vlajka_k_hadani):
     del slovnik_s_vlajkami[vlajka_k_hadani]

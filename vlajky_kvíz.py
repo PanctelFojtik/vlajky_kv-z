@@ -34,7 +34,7 @@ while pokracovat_ve_hre:
     pencolor("black")
     soucasne_kolo_vlajky = []
     # náhodně vyberu 3 vlajky, pokud bude stejná, budu hledat dál
-    vyber_vlajky_k_vykresleni(soucasne_kolo_vlajky, vlajky)
+    pokracovat_ve_hre = vyber_vlajky_k_vykresleni(soucasne_kolo_vlajky, vlajky) # funkce vrátí True nebo False
 
     # nakreslím text nahoře
     vlajka_k_hadani = hadame_vlajku(soucasne_kolo_vlajky)
@@ -52,8 +52,10 @@ while pokracovat_ve_hre:
     if odpoved.upper() == "KONEC":
         print("Ukončuji hru.")
         pokracovat_ve_hre = False 
-    elif odpoved in moznosti and moznosti.index(odpoved.upper()) == spravny_index:
+    elif odpoved.upper() in moznosti and moznosti.index(odpoved.upper()) == spravny_index:
         skore += 1
+        odstran_pouzitou_vlajku(vlajky, vlajka_k_hadani)
+        clear()
     else:
         poradi_otazky += 1
         odstran_pouzitou_vlajku(vlajky, vlajka_k_hadani)
