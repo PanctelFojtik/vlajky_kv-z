@@ -13,6 +13,9 @@ def vyber_vlajky_k_vykresleni(list_s_vlajkami, nazev_slovniku_s_vlajkami):
         else:
             continue
 
+def odstran_pouzitou_vlajku(slovnik_s_vlajkami, vlajka_k_hadani):
+    del slovnik_s_vlajkami[vlajka_k_hadani]
+
 def hadame_vlajku(list_s_vlajkami):
     return random.choice(list_s_vlajkami)
 

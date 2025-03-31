@@ -26,15 +26,19 @@ skore = 0
 poradi_otazky = 1
 
 
-soucasne_kolo_vlajky = []
+
 pokracovat_ve_hre = True
 
 while pokracovat_ve_hre:
+    penup()
+    pencolor("black")
+    soucasne_kolo_vlajky = []
     # náhodně vyberu 3 vlajky, pokud bude stejná, budu hledat dál
     vyber_vlajky_k_vykresleni(soucasne_kolo_vlajky, vlajky)
 
     # nakreslím text nahoře
     vlajka_k_hadani = hadame_vlajku(soucasne_kolo_vlajky)
+    print(f"Toto je vlajka k hádání: {vlajka_k_hadani}")
     nakresli_text(poradi_otazky, skore, vlajka_k_hadani)
 
     # nakreslím 3 vlajky
@@ -47,18 +51,12 @@ while pokracovat_ve_hre:
     spravny_index = soucasne_kolo_vlajky.index(vlajka_k_hadani)
     if odpoved.upper() == "KONEC":
         print("Ukončuji hru.")
-        pokracovat_ve_hre = False   
-    elif moznosti.index(odpoved) == spravny_index:
+        pokracovat_ve_hre = False 
+    elif odpoved in moznosti and moznosti.index(odpoved.upper()) == spravny_index:
         skore += 1
-    poradi_otazky += 1
-
-soucasne_kolo_vlajky = []
-for vlajka in list(vlajky.keys()):
-    # náhodně vybere vlajky
-    # přidá do soucasne_kolo_vlajky
-    if vlajka in soucasne_kolo_vlajky:
-        continue
     else:
-        soucasne_kolo_vlajky.append(vlajka)
+        poradi_otazky += 1
+        odstran_pouzitou_vlajku(vlajky, vlajka_k_hadani)
+        clear()
 
 
